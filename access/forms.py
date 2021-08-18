@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-from django.forms import ModelForm
+from django.forms import ModelForm, BaseModelForm, BaseForm
 from django.utils.safestring import mark_safe
 
 
@@ -21,5 +21,19 @@ class RegistrationForm(ModelForm):
         model = users
         fields = '__all__'
         widgets = {
-            'name': forms.Textarea(attrs={'cols': 80, 'rows': 20}),
+            'name': forms.TextInput(attrs={'placeholder': 'Jane Doe',
+                                           'size': 26, 'style': 'height: 24px',},),
+            'email': forms.TextInput(attrs={'placeholder': 'janedoe@incognito.com',
+                                            'size': 26, 'style': 'height: 24px', }, ),
+            'birthdate': forms.DateInput(attrs={'type':'date', 'required': True}),
+            'mobile_no': forms.TextInput(attrs={'placeholder': '9182736450',
+                                                'size': 26, 'style': 'height: 24px', }, ),
+            'password': forms.PasswordInput(attrs={'placeholder': 'Open Sesame code',
+                                               'size': 26, 'style': 'height: 24px', }, ),
         }
+
+    repassword_ = forms.CharField(max_length=32, widget=forms.PasswordInput(attrs={'placeholder': 'Re-type Open Sesame code',
+                                                                                 'size': 26, 'style': 'height: 24px',
+                                                                                 }),
+                                  label=mark_safe('Re-enter password: '),
+                                  label_suffix='')
