@@ -12,7 +12,7 @@ def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            return render(request, 'access/login.html', {'message': 'All cool'})
+            return render(request, 'home/homepage.html')
         else:
             return render(request, 'access/login.html', {'form': form, 'message': 'Not cool'})
     else:
@@ -60,5 +60,5 @@ def data_okay(form):
         and at least one of _#!$%&*'''
         return False, password_valid_string
 
-    # newUser = form.save()
+    form.save()
     return True
