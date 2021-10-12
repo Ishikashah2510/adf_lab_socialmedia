@@ -30,9 +30,13 @@
         <button class="fill">Not a member of connectify? Quick, Register!</button>
     </a>
 
-
+    <br><br>
     {% if message %}
         <strong>{{ message }}</strong>
+    {% endif %}
+<br>
+    {% if message == 'Forgot your password?' %}
+        <a>Click here to recover it!</a>
     {% endif %}
 
 </center>

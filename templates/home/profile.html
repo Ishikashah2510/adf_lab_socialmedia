@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="../../static/profile.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+{% if user.is_authenticated %}
+    <center>
+
+    {% comment 'profile' %}Here are the profile details{% endcomment %}
+        <img src="{{ user.pro_pic.url }}" alt="{{ user.pro_pic }}"><br><br>
+        <i class="name">{{ user.name }}</i><br><br>
+        <p>Username : <i>{{ user.username }}</i></p>
+        <p>Email : <i>{{ user.email }}</i></p>
+        <p>Gender : <i>{{ user.gender }}</i></p>
+        <p>Mobile no. : <i>{{ user.mobile_no }}</i></p>
+        <p>Birthdate : <i>{{ user.birthdate }}</i></p>
+        <p>You created this profile on <i>{{ user.acc_creation_date | date }}</i> at <i>{{ user.acc_creation_date | time }}</i> UTC </p>
+        <br><br>
+
+        {% comment %}The update button here{% endcomment %}
+        <span><a href="#"></a></span>
+
+    </center>
+{% endif %}
+</body>
+</html>

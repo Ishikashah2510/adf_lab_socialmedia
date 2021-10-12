@@ -9,7 +9,7 @@ def index(request):
     <body>
     <center>
     <h1>18BCE081</h1>
-    <h2>Practical 2</h2>
+    <h2>Practical 1</h2>
     <h3>Generating a basic homepage</h3>
     This is a basic HTML page generated using HttpResponse i.e. without using templates
     </center>

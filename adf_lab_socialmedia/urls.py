@@ -23,5 +23,7 @@ urlpatterns = [
     path('prac2/', include('prac2.urls')),
     path('admin/', admin.site.urls),
     path('access/', include('access.urls')),
+    path('home/', include('home.urls')),
     path('', RedirectView.as_view(url='/access/'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
