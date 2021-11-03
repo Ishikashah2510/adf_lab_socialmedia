@@ -34,7 +34,7 @@ class RegistrationForm(ModelForm):
 
         model = users
         fields = '__all__'
-        exclude = ('acc_creation_date', )
+        exclude = ('acc_creation_date', 'is_active', 'is_authenticated')
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Jane Doe',
                                            'size': 26, 'style': 'height: 24px',},),

@@ -24,6 +24,5 @@ class users(models.Model):
     acc_creation_date = models.DateTimeField(default=timezone.now)
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=25)
-
-    def is_user_authenticated(self, yes=True):
-        self.is_authenticated = yes
+    is_active = models.BooleanField(default=False)
+    is_authenticated = models.BooleanField(default=False)

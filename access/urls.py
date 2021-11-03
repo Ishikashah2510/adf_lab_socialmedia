@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^register/$', avs.register, name='register'),
     url(r'^homepage/$', avs.go_to_homepage, name='homepage'),
     url(r'^logout/$', avs.logout, name='logout'),
+    path('activate/<uidb64>/<token>', avs.activate, name='activate'),
 ]
