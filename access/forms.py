@@ -34,7 +34,7 @@ class RegistrationForm(ModelForm):
 
         model = users
         fields = '__all__'
-        exclude = ('acc_creation_date', 'is_active', 'is_authenticated')
+        exclude = ('acc_creation_date', 'last_login', 'is_authenticatedd')
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Jane Doe',
                                            'size': 26, 'style': 'height: 24px',},),
@@ -52,7 +52,7 @@ class RegistrationForm(ModelForm):
         }
 
     repassword_ = forms.CharField(max_length=32, widget=forms.PasswordInput(attrs={'placeholder': 'Re-type Open Sesame code',
-                                                                                 'size': 26, 'style': 'height: 24px',
-                                                                                 }),
+                                                                                   'size': 26, 'style': 'height: 24px',
+                                                                                   }),
                                   label=mark_safe('Re-enter password: '),
                                   label_suffix='')

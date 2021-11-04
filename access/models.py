@@ -1,10 +1,11 @@
+from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
 from django.utils import timezone
 
 # Create your models here.
 
 
-class users(models.Model):
+class users(AbstractBaseUser):
     genders = [
         ('Male', 'Male'),
         ('Female', 'Female'),
@@ -22,7 +23,16 @@ class users(models.Model):
     pro_pic = models.ImageField(upload_to='profile_photos/',
                                 default='/profile_photos/default_pic.jpg')
     acc_creation_date = models.DateTimeField(default=timezone.now)
-    username = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, unique=True)
     password = models.CharField(max_length=25)
-    is_active = models.BooleanField(default=False)
-    is_authenticated = models.BooleanField(default=False)
+    is_authenticatedd = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['name', 'birthdate', 'gender',
+                       'mobile_no', 'password']
+
+    class Meta:
+        permissions = [
+            ("can_post", "The user can make a post"),
+            ("can_delete_account", "The user can delete their account"),
+        ]

@@ -21,22 +21,19 @@ x = 0
 def login(request):
     global x
 
-    request.session.set_expiry(300)
-
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
             try:
                 cuser = users.objects.filter(Q(email=form.cleaned_data['email_']) | Q(username=form.cleaned_data['email_']))
                 cuser = cuser.get(password=form.cleaned_data['password_'])
-                if cuser.is_active == True:
-                    cuser.is_authenticated = True
-                    cuser.save()
+                if cuser.is_authenticatedd:
                     request.session['curr_user'] = form.cleaned_data['email_']
+                    request.session.set_expiry(300)
                     return go_to_homepage(request)
                 else:
                     return render(request, 'access/login.html',
-                                  {'form': form, 'message': 'havent authenticated yourself?',})
+                                  {'form': form, 'message': 'havent authenticated yourself?', })
             except Exception as e:
                 print(e)
                 return render(request, 'access/login.html',
@@ -116,8 +113,8 @@ def data_okay(form):
     except:
         pass
 
-
     form.save()
+
     return True, 'okay'
 
 
@@ -141,7 +138,7 @@ def activate(request, uidb64, token):
         myuser = None
 
     if myuser is not None and generate_token.check_token(myuser,token):
-        myuser.is_active = True
+        myuser.is_authenticatedd = True
         # user.profile.signup_confirmation = True
         myuser.save()
         login(request)

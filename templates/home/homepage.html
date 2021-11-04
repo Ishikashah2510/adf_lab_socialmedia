@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../static/post.css">
 </head>
 <body>
-{% if obj.is_authenticated %}
+{% if obj.is_authenticatedd %}
     You are authenticated and are on homepage<br>
     <a href="{% url 'home:profile' %}">Profile</a><br>
     <a href="{% url 'access:logout' %}">Logout</a>
